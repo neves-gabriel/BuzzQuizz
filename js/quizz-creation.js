@@ -101,6 +101,7 @@ function createQuestionRender(){
 
 function createResultsRender(){
     const inputQuestions = document.querySelectorAll(".question-text")
+    const inputColor = document.querySelectorAll(".question-color")
 
     for(let i = 0; i < inputQuestions.length; i++){
         if(inputQuestions[i].value.length < 20){
@@ -108,6 +109,34 @@ function createResultsRender(){
             return;
         }
     }
-        
+    
+    for(let i = 0; i < inputColor.length; i++){
+        let inputColorValue = inputColor[i].value;
+        inputColorValue = inputColorValue.toUpperCase();
+
+        if(inputColorValue.length !== 7 || inputColorValue[0] !== "#" || !colorCheck(inputColorValue)){
+            alert("Informaçoes inválidas");
+            return;
+        }
+}      
+}
+
+function colorCheck(inputColorValue){
+    const auxArray = ["A", "B", "C", "D", "E", "F", "0", "1", "2", "3", "4", "5", "6", "7","8", "9"];
+
+    for(w = 1; w < inputColorValue.length; w++){
+        let aux = false
+        for(j = 0; j<auxArray.length; j++){
+            if(inputColorValue[w] === auxArray[j]){
+                aux = true
+                break;
+            }
+        }
+        if(!aux){
+        alert("Informaçoes inválidas");
+        return false;
+    }
+     return true;    
+} 
 }
 
