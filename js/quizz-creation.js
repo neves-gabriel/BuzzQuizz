@@ -94,8 +94,20 @@ function createQuestionRender(){
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
         </div>
-        <button>Prosseguir pra criar níveis</button>`
+        <button onclick ="createResultsRender()">Prosseguir pra criar níveis</button>`
         }
     }
+}
+
+function createResultsRender(){
+    const inputQuestions = document.querySelectorAll(".question-text")
+
+    for(let i = 0; i < inputQuestions.length; i++){
+        if(inputQuestions[i].value.length < 20){
+            alert("Informaçoes inválidas");
+            return;
+        }
+    }
+        
 }
 
