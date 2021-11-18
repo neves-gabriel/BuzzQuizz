@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/homescreen.css">
+    <link rel="stylesheet" href="css/createquizz.css">
 
     <link rel="icon" type="image/png" href="https://www.google.com/s2/u/0/favicons?domain=www.buzzfeed.com.br/">
 
@@ -44,8 +45,55 @@
 
     </main>
 
+    <div class="quizz-create hidden">
+        <div class="first-step">
+            <h2>Comece pelo começo</h2>
+        <div class="info-box">
+            <input type="text" placeholder="Titulo do seu quizz" class="quizz-title">
+            <input type="text" placeholder="URL da imagem do seu quizz" class="quizz-img">
+            <input type="number" placeholder="Quantidade de perguntas do quizz" class="number-of-questions">
+            <input type="number" placeholder="Quantidade de níveis do quizz" class="number-of-results">
+        </div>
+        <button onclick="confirmInfo()">Prosseguir pra criar perguntas</button>
+    </div>
+    <div class="second-step hidden">
+        <h2>Crie suas perguntas</h2>
+    </div>
+    <div class="third-step hidden">
+        <h2>Agora, decida os níveis</h2>
+    <div class="result-box selected">
+        <p>Nivel 1</p>
+        <input type="text" placeholder="Título do nível" class="result-title">
+        <input type="number" placeholder="% de acerto mínima" class="result-%">
+        <input type="text" placeholder="URL da imagem do nível" class="result-img">
+        <input type="text" placeholder="Descrição do nível" class="result-info">
+        <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+        </div>
+        <div class="result-box">
+            <p>Nivel 2</p>
+            <input type="text" placeholder="Título do nível" class="result-title">
+            <input type="number" placeholder="% de acerto mínima" class="result-%">
+            <input type="text" placeholder="URL da imagem do nível" class="result-img">
+            <input type="text" placeholder="Descrição do nível" class="result-info">
+            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            </div>
+    <button>Finalizar Quizz</button>
+    </div>
+    <div class="final hidden">
+        <h2>Seu quizz está pronto!</h2>
+        <div class="quizz">
+            <img src="https://http.cat/411.jpg" alt="">
+            <h4>Titulo do quizz</h4>
+        </div>
+    
+        <button>Acessar o Quizz</button>
+        <span>Voltar pra home</span>
+    </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/homescreen.js"></script>
+    <script src="js/quizz-creation.js"></script>
 </body>
 </html>
