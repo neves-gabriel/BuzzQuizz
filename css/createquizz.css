@@ -8,7 +8,7 @@ body{
 }
 
 
-header{
+/*header{
     width: 100%;
     height: 69px;
     background-color:#EC362D;
@@ -19,7 +19,7 @@ header{
     line-height: 43px;
     color: white;
     font-weight: bold;
-}
+}*/
 
 .quizz-create{
     display: flex;
@@ -205,6 +205,6 @@ header{
 .quizz-create .hidden{
     display: none;
 }
-.hidden{
+/*.hidden{
     display: none;
-}
+}*/
