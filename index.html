@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/homescreen.css">
 
     <link rel="icon" type="image/png" href="https://www.google.com/s2/u/0/favicons?domain=www.buzzfeed.com.br/">
 
@@ -29,9 +30,22 @@
 
     <main class="homescreen">
 
+        <ul class="quiz-list user">
+            <div class="empty-list">
+                <p>Você não criou nenhum quizz ainda :(</p>
+                <button name="create-first-new-quiz" onclick="openQuizCreation()">Criar quizz</button>
+            </div>
+        </ul>
+        
+        <h2>Todos os Quizzes</h2>
+
+        <ul class="quiz-list all">
+        </ul>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/homescreen.js"></script>
 </body>
 </html>

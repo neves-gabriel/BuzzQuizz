@@ -6,7 +6,7 @@
 
 body{
     font-family: 'Roboto', sans-serif;
-    background: #E5E5E5;
+    background: #FAFAFA;
 }
 
 header{
@@ -34,7 +34,8 @@ header h1{
 main{
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 69px;
-    background-color: #E5E5E5;
+    margin-top: 146px;
+    background-color: #FAFAFA;
+    margin-left: auto;
+    margin-right: auto;
 }
