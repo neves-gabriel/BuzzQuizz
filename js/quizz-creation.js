@@ -236,7 +236,7 @@ function createResultsRender(){
 }
 
 function confirmResultInfo(){
-    if(!resultTitleLengthCheck() || !percentCheck() || !checkResultURL()){
+    if(!resultTitleLengthCheck() || !percentCheck() || !checkResultURL() || !checkResultInfoLength()){
         alert("Informações Inválidas")
     }
 }
@@ -289,6 +289,17 @@ function checkResultURL(){
     for(let i = 0; i <inputResultImg.length; i++){
         let inputResultImgValue = inputResultImg[i].value
         if(!isValidHttpUrl(inputResultImgValue)){
+            return false;
+        }
+    }
+    return true;
+}
+
+function checkResultInfoLength(){
+    const inputResultInfo = document.querySelectorAll(".result-info");
+    for(let i = 0; i < inputResultInfo.length; i++){
+        let inputResultInfoValue = inputResultInfo[i].value;
+        if(inputResultInfoValue.length < 30){
             return false;
         }
     }
