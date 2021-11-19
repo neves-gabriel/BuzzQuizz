@@ -236,7 +236,7 @@ function createResultsRender(){
 }
 
 function confirmResultInfo(){
-    if(!resultTitleLengthCheck()){
+    if(!resultTitleLengthCheck() || !percentCheck()){
         alert("Informações Inválidas")
     }
 }
@@ -250,4 +250,36 @@ function resultTitleLengthCheck(){
         }
     }
     return true;
+}
+
+function percentCheck(){
+    const resultPercent = document.querySelectorAll(".result-percent");
+    let aux = false
+    let auxArray = []
+    for(let i = 0; i < resultPercent.length; i++){
+        let resultPercentValue = resultPercent[i].value;
+        auxArray.push(resultPercentValue)
+        if(resultPercentValue > 100){
+            return false;
+        }
+
+        if(resultPercentValue == 0){
+            aux = true;
+        }
+    }
+
+    for(let j = 0; j < auxArray.length; j++){
+        let comparator = auxArray[j];
+        for(let w = j + 1; w<auxArray.length; w++){
+            if(comparator === auxArray[w]){
+                return false;
+            }
+        }
+    }
+    if(!aux){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
