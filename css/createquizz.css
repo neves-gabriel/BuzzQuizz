@@ -42,7 +42,7 @@ body{
 }
 .quizz-create .info-box{
     width: 600px;
-    height: 252px;
+    height: 256px;
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -119,7 +119,7 @@ body{
     padding-left: 10px;
     font-style: italic
 }
-.quizz-create .question-box.selected ion-icon, .result-box.selected ion-icon{
+.quizz-create .question-box.selected ion-icon,.quizz-create .result-box.selected ion-icon{
     display: none;
 }
 
@@ -143,7 +143,7 @@ body{
 
 .quizz-create .result-box.selected{
     width: 600px;
-    height: 252px;
+    height: 316px;
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
