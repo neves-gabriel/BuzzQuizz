@@ -230,8 +230,24 @@ function createResultsRender(){
             <input type="text" placeholder="Descrição do nível" class="result-info">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
             </div>
-            <button>Finalizar Quizz</button>`
+            <button onclick="confirmResultInfo()">Finalizar Quizz</button>`
         }
     }
 }
 
+function confirmResultInfo(){
+    if(!resultTitleLengthCheck()){
+        alert("Informações Inválidas")
+    }
+}
+
+function resultTitleLengthCheck(){
+    const resultTitle = document.querySelectorAll(".result-title");
+    for(let i = 0; i < resultTitle.length; i++){
+        let resultTitleInput = resultTitle[i].value
+        if(resultTitleInput.length < 10){
+            return false;
+        }
+    }
+    return true;
+}
