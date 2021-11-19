@@ -201,7 +201,7 @@ function createResultsRender(){
             <div class="result-box selected">
             <p>Nível ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
-            <input type="number" placeholder="% de acerto mínima" class="result-%">
+            <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <input type="text" placeholder="Descrição do nível" class="result-info">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
@@ -213,7 +213,7 @@ function createResultsRender(){
             <div class="result-box">
             <p>Nível ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
-            <input type="number" placeholder="% de acerto mínima" class="result-%">
+            <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <input type="text" placeholder="Descrição do nível" class="result-info">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
@@ -225,7 +225,7 @@ function createResultsRender(){
             <div class="result-box">
             <p>Nivel ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
-            <input type="number" placeholder="% de acerto mínima" class="result-%">
+            <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <input type="text" placeholder="Descrição do nível" class="result-info">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
@@ -236,7 +236,7 @@ function createResultsRender(){
 }
 
 function confirmResultInfo(){
-    if(!resultTitleLengthCheck() || !percentCheck()){
+    if(!resultTitleLengthCheck() || !percentCheck() || !checkResultURL()){
         alert("Informações Inválidas")
     }
 }
@@ -282,4 +282,15 @@ function percentCheck(){
     else{
         return true;
     }
+}
+
+function checkResultURL(){
+    const inputResultImg = document.querySelectorAll(".result-img");
+    for(let i = 0; i <inputResultImg.length; i++){
+        let inputResultImgValue = inputResultImg[i].value
+        if(!isValidHttpUrl(inputResultImgValue)){
+            return false;
+        }
+    }
+    return true;
 }
