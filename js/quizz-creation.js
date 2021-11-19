@@ -94,34 +94,87 @@ function createQuestionRender(){
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
         </div>
-        <button onclick ="createResultsRender()">Prosseguir pra criar níveis</button>`
+        <button onclick ="confirmQuestionsInfo()">Prosseguir pra criar níveis</button>`
         }
     }
 }
 
-function createResultsRender(){
-    const inputQuestions = document.querySelectorAll(".question-text")
-    const inputColor = document.querySelectorAll(".question-color")
+function confirmQuestionsInfo(){
+    
+    if(!questionLengthCheck() || !inputColorCheck() || !checkCorrectAnswer() || !checkEmptysAnswers() ){
+        alert("Informaçoes inválidas");
+    }
+    else{
+        document.querySelector(".second-step").classList.add("hidden");
+        document.querySelector(".third-step").classList.remove("hidden");
+        createResultsRender();
+    }
 
+}
+
+function questionLengthCheck(){
+    const inputQuestions = document.querySelectorAll(".question-text");
     for(let i = 0; i < inputQuestions.length; i++){
         if(inputQuestions[i].value.length < 20){
-            alert("Informaçoes inválidas");
-            return;
+            
+           return false;
         }
     }
-    
+    return true;
+}
+
+function inputColorCheck(){
+    const inputColor = document.querySelectorAll(".question-color");
     for(let i = 0; i < inputColor.length; i++){
         let inputColorValue = inputColor[i].value;
         inputColorValue = inputColorValue.toUpperCase();
 
-        if(inputColorValue.length !== 7 || inputColorValue[0] !== "#" || !colorCheck(inputColorValue)){
-            alert("Informaçoes inválidas");
-            return;
-        }
-}      
+    if(inputColorValue.length !== 7 || inputColorValue[0] !== "#" || !hexCheck(inputColorValue)){
+            return false;
+    }
+    }
+    return true;
 }
 
-function colorCheck(inputColorValue){
+function checkCorrectAnswer(){
+    const inputCorrectAnswer = document.querySelectorAll(".correct-answer");
+    const inputCorrectAnswerImg = document.querySelectorAll(".correct-answer-img");
+    for(let i = 0; i< inputCorrectAnswer.length; i++){
+        let inputCorrectAnswerValue = inputCorrectAnswer[i].value;
+        let inputCorrectAnswerImgValue = inputCorrectAnswerImg[i].value
+            if(inputCorrectAnswerValue === "" || !isValidHttpUrl(inputCorrectAnswerImgValue)){
+            return false;
+        }
+    }
+    return true;
+}
+
+function checkEmptysAnswers(){
+    const boxes = document.querySelectorAll(".question-box");
+    for(let j = 0; j< boxes.length; j++){
+        const inputWrongAnswer = boxes[j].querySelectorAll(".wrong-answer");
+        const inputWrongAnswerImg = boxes[j].querySelectorAll(".wrong-answer-img");
+        let emptysAnswers = 0;
+    for(let i = 0; i< inputWrongAnswer.length; i++){
+        let inputCorrectWrongValue = inputWrongAnswer[i].value;
+        let inputWrongAnswerImgValue = inputWrongAnswerImg[i].value;
+        if(inputCorrectWrongValue === ""){
+            emptysAnswers++;
+            if(emptysAnswers === 3){
+            return false;
+            }
+            continue;
+        }
+        if(!isValidHttpUrl(inputWrongAnswerImgValue)){
+            return false;
+        }
+        
+    }
+}
+return true;
+}
+
+function hexCheck(inputColorValue){
     const auxArray = ["A", "B", "C", "D", "E", "F", "0", "1", "2", "3", "4", "5", "6", "7","8", "9"];
 
     for(w = 1; w < inputColorValue.length; w++){
@@ -138,5 +191,47 @@ function colorCheck(inputColorValue){
     }
      return true;    
 } 
+}
+
+function createResultsRender(){
+    const results = document.querySelector(".third-step")
+    for(let i = 0 ; i < nResults; i++){
+        if(i === 0){
+            results.innerHTML += `
+            <div class="result-box selected">
+            <p>Nível ${i+1}</p>
+            <input type="text" placeholder="Título do nível" class="result-title">
+            <input type="number" placeholder="% de acerto mínima" class="result-%">
+            <input type="text" placeholder="URL da imagem do nível" class="result-img">
+            <input type="text" placeholder="Descrição do nível" class="result-info">
+            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            </div>
+            `
+        }
+        else if(i < nResults - 1){
+            results.innerHTML += `
+            <div class="result-box">
+            <p>Nível ${i+1}</p>
+            <input type="text" placeholder="Título do nível" class="result-title">
+            <input type="number" placeholder="% de acerto mínima" class="result-%">
+            <input type="text" placeholder="URL da imagem do nível" class="result-img">
+            <input type="text" placeholder="Descrição do nível" class="result-info">
+            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            </div>
+            `
+        }
+        else{
+            results.innerHTML += `
+            <div class="result-box">
+            <p>Nivel ${i+1}</p>
+            <input type="text" placeholder="Título do nível" class="result-title">
+            <input type="number" placeholder="% de acerto mínima" class="result-%">
+            <input type="text" placeholder="URL da imagem do nível" class="result-img">
+            <input type="text" placeholder="Descrição do nível" class="result-info">
+            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            </div>
+            <button>Finalizar Quizz</button>`
+        }
+    }
 }
 
