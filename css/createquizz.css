@@ -32,8 +32,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 71px;
 }
+
 .quizz-create .second-step,.quizz-create .third-step{
     gap: 24px;
 }
@@ -42,7 +42,7 @@ body{
 }
 .quizz-create .info-box{
     width: 600px;
-    height: 256px;
+    height: 252px;
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -50,6 +50,7 @@ body{
     justify-content: center;
     align-items: center;
     margin: 27px 0 85px 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
 .quizz-create .info-box input{
@@ -57,11 +58,11 @@ body{
     height: 46px;
     border: 1px solid #D1D1D1;
     border-radius: 5px;
+    padding: 0 10px;
 }
 
 .quizz-create .info-box input::placeholder{
     color: #BABABA;
-    padding-left: 10px;
     font-style: italic;
 }
 
@@ -106,17 +107,16 @@ body{
 .quizz-create .selected .answer{
     display: initial;
 }
-
 .quizz-create .question-box.selected input{
     width: 564px;
     height: 46px;
     border: 1px solid #D1D1D1;
     border-radius: 5px;
     display: initial;
+    padding: 0 10px;
 }
 .quizz-create .question-box input::placeholder{
     color: #BABABA;
-    padding-left: 10px;
     font-style: italic
 }
 .quizz-create .question-box.selected ion-icon,.quizz-create .result-box.selected ion-icon{
@@ -159,6 +159,7 @@ body{
     border: 1px solid #D1D1D1;
     border-radius: 5px;
     display: none;
+    padding: 0 10px;
 }
 .quizz-create .result-box.selected input{
     display: initial;
@@ -176,12 +177,21 @@ body{
     height: 266px;
  }
 
-.quizz-create h4{
+.quizz-create .final h4{
      color: #FFFFFF;
      position: absolute;
      left: 25px;
-     bottom: 15px;
+     bottom: 25px;
+     word-wrap: break-word;
+     word-break: break-all;
  }
+.quizz-create .second-step button{
+    width: 355px;
+}
+
+.quizz-create .third-step button{
+    width: 324px;
+}
 
 .quizz-create .final button{
      width: 220px;
@@ -200,11 +210,18 @@ body{
   -webkit-appearance: none;
   margin: 0;
 }
+:hover.final span{
+    cursor: pointer;
+}
 
+input.invalid{
+    background-color: #FFE9E9;
+}
 
 .quizz-create .hidden{
     display: none;
 }
+
 /*.hidden{
     display: none;
 }*/

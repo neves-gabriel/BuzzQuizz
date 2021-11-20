@@ -2,6 +2,14 @@ let quizzTitle = "";
 let quizzImg = "";
 let nQuestions = 0;
 let nResults = 0;
+let idUsersQuizzes = [];
+
+let quizz = {title: "",
+image: "",
+questions:[],
+levels:[]
+}
+
 
 function selector(icon){
     const box = icon.parentNode
@@ -19,6 +27,8 @@ function confirmInfo(){
     if((quizzTitle.length >= 19 && quizzTitle.length <= 65) && isValidHttpUrl(quizzImg) && nQuestions > 2 && nResults > 1){
         document.querySelector(".first-step").classList.add("hidden");
         document.querySelector(".second-step").classList.remove("hidden");
+        quizz.title = quizzTitle;
+        quizz.image = quizzImg;
         createQuestionRender();
     }
     else{
@@ -42,59 +52,59 @@ function createQuestionRender(){
     const questions = document.querySelector(".second-step")
     for(let i = 0; i < nQuestions; i++){
         if(i===0){
-            questions.innerHTML += `<div class="question-box selected">
+            questions.innerHTML += `<li class="question-box selected">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
             <input type="text" placeholder="Cor de fundo da pergunta" class="question-color">
             <p class = "answer">Resposta Correta</p>
-            <input type="text" placeholder="Resposta Correta" class="correct-answer">
-            <input type="text" placeholder="URL da imagem" class="correct-answer-img">
+            <input type="text" placeholder="Resposta Correta" class="correct-answer answers">
+            <input type="text" placeholder="URL da imagem" class="correct-answer-img answers-img">
             <p class = "answer">Resposta Incorretas</p>
-            <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img">
-            <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img">
-            <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img">
+            <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img answers-img">
+            <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img answers-img">
+            <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
-        </div>`
+        </li>`
         }
         else if(i < nQuestions - 1){
-            questions.innerHTML += `<div class="question-box">
+            questions.innerHTML += `<li class="question-box">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
             <input type="text" placeholder="Cor de fundo da pergunta" class="question-color">
             <p class = "answer">Resposta Correta</p>
-            <input type="text" placeholder="Resposta Correta" class="correct-answer">
-            <input type="text" placeholder="URL da imagem" class="correct-answer-img">
+            <input type="text" placeholder="Resposta Correta" class="correct-answer answers">
+            <input type="text" placeholder="URL da imagem" class="correct-answer-img answers-img">
             <p class = "answer">Resposta Incorretas</p>
-            <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img">
-            <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img">
-            <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img">
+            <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img answers-img">
+            <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img answers-img">
+            <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
-        </div>`
+        </li>`
         }
         else{
-            questions.innerHTML += `<div class="question-box">
+            questions.innerHTML += `<li class="question-box">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
             <input type="text" placeholder="Cor de fundo da pergunta" class="question-color">
             <p class = "answer">Resposta Correta</p>
-            <input type="text" placeholder="Resposta Correta" class="correct-answer">
-            <input type="text" placeholder="URL da imagem" class="correct-answer-img">
+            <input type="text" placeholder="Resposta Correta" class="correct-answer answers">
+            <input type="text" placeholder="URL da imagem" class="correct-answer-img answers-img">
             <p class = "answer">Resposta Incorretas</p>
-            <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img">
-            <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img">
-            <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer">
-            <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img">
+            <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img answers-img">
+            <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img answers-img">
+            <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer answers">
+            <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
-        </div>
-        <button onclick ="confirmQuestionsInfo()">Prosseguir pra criar níveis</button>`
+        </li>
+        <button onclick = "confirmQuestionsInfo()">Prosseguir pra criar níveis</button>`
         }
     }
 }
@@ -156,9 +166,12 @@ function checkEmptysAnswers(){
         const inputWrongAnswerImg = boxes[j].querySelectorAll(".wrong-answer-img");
         let emptysAnswers = 0;
     for(let i = 0; i< inputWrongAnswer.length; i++){
-        let inputCorrectWrongValue = inputWrongAnswer[i].value;
+        let inputWrongAnswerValue = inputWrongAnswer[i].value;
         let inputWrongAnswerImgValue = inputWrongAnswerImg[i].value;
-        if(inputCorrectWrongValue === ""){
+        if(inputWrongAnswerValue === ""){
+            if(inputWrongAnswerImgValue !== ""){
+                return false;
+            }
             emptysAnswers++;
             if(emptysAnswers === 3){
             return false;
@@ -198,38 +211,38 @@ function createResultsRender(){
     for(let i = 0 ; i < nResults; i++){
         if(i === 0){
             results.innerHTML += `
-            <div class="result-box selected">
+            <li class="result-box selected">
             <p>Nível ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <input type="text" placeholder="Descrição do nível" class="result-info">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
-            </div>
+            </li>
             `
         }
         else if(i < nResults - 1){
             results.innerHTML += `
-            <div class="result-box">
+            <li class="result-box">
             <p>Nível ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <input type="text" placeholder="Descrição do nível" class="result-info">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
-            </div>
+            </li>
             `
         }
         else{
             results.innerHTML += `
-            <div class="result-box">
+            <li class="result-box">
             <p>Nivel ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <input type="text" placeholder="Descrição do nível" class="result-info">
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
-            </div>
+            </li>
             <button onclick="confirmResultInfo()">Finalizar Quizz</button>`
         }
     }
@@ -239,13 +252,18 @@ function confirmResultInfo(){
     if(!resultTitleLengthCheck() || !percentCheck() || !checkResultURL() || !checkResultInfoLength()){
         alert("Informações Inválidas")
     }
+    else{
+        createQuizz();
+    }
+
 }
+
 
 function resultTitleLengthCheck(){
     const resultTitle = document.querySelectorAll(".result-title");
     for(let i = 0; i < resultTitle.length; i++){
-        let resultTitleInput = resultTitle[i].value
-        if(resultTitleInput.length < 10){
+        let resultTitleValue = resultTitle[i].value
+        if(resultTitleValue.length < 10){
             return false;
         }
     }
@@ -304,4 +322,74 @@ function checkResultInfoLength(){
         }
     }
     return true;
+}
+
+
+function createQuizz(){
+const allBoxes = document.querySelectorAll(".question-box")
+const allResults = document.querySelectorAll(".result-box")
+for(let i = 0; i < allBoxes.length; i++){
+    quizz.questions.push({
+        title: allBoxes[i].querySelector(".question-text").value,
+		color: allBoxes[i].querySelector(".question-color").value,
+        answers:[]
+    })
+}
+for(let i = 0; i < allBoxes.length; i++){
+    const inputArray = allBoxes[i].querySelectorAll(".answers");
+    const imgArray = allBoxes[i].querySelectorAll(".answers-img");
+    for(j = 0; j<inputArray.length; j++){
+        let input = inputArray[j].value;
+        let imgAnswer = imgArray[j].value;
+        if(input === ""){
+        continue;
+        }
+        if(j === 0){
+        quizz.questions[i].answers.push({
+        text: input,
+        image: imgAnswer,
+        isCorrectAnswer: true})
+        }
+        else{
+        quizz.questions[i].answers.push({
+        text: input,
+        image: imgAnswer,
+        isCorrectAnswer: false
+        })   
+        }
+    }
+}
+for(let i = 0; i< allResults.length; i++ ){
+    let resultTitle = allResults[i].querySelector(".result-title").value
+    let resultImg = allResults[i].querySelector(".result-img").value
+    let restultText = allResults[i].querySelector(".result-info").value
+    let resultPercent = parseInt(allResults[i].querySelector(".result-percent").value)
+    quizz.levels.push({
+        title: resultTitle,
+        image: resultImg,
+        text: restultText,
+        minValue: resultPercent
+    })
+}
+  sendQuizz()
+}
+
+function sendQuizz(){
+const promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizz)
+promessa.then(setStorage);
+promessa.catch(seeError);
+}
+
+function setStorage(response){
+    console.log(response.data.id)
+    localStorage.setItem("id", response.data.id)
+    const id = localStorage.getItem("id")
+    idUsersQuizzes.push(parseInt(id));
+    document.querySelector(".third-step").classList.add("hidden")
+    document.querySelector(".final").classList.remove(".add")
+    const quizzPage = document.querySelector(".final quizz")
+    quizzPage.innerHTML = `
+    <img src="${quizz.image}" alt="">
+        <h4>${quizz.title}</h4>
+    `
 }
