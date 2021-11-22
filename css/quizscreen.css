@@ -94,7 +94,7 @@
     min-width: var(--questions-container-width);
 }
 
-.result-title{
+.result-text{
     background-color: #EC362D;
     height: 100px;
     display: flex;

@@ -158,7 +158,7 @@ function finishQuiz(){
 function buildResult(){
     let level = calculateLevel();
 
-    return `<div class="result-title">${level.title}</div>
+    return `<div class="result-text">${level.title}</div>
             <div class="result-details">
                 <img class="result-img" src="${level.image}"/>
                 <div class="result-comment">${level.text}</div>
