@@ -444,7 +444,9 @@ promessa.catch(seeError);
 function lastPage(response){
     console.log(response.data.id)
     const id = response.data.id;
-    idUsersQuizzes.push(localStorage.getItem("id"));
+    if (localStorage.getItem("id") != "") {
+        idUsersQuizzes.push(localStorage.getItem("id"));
+    }
     console.log(idUsersQuizzes);
     idUsersQuizzes.push(id);
     localStorage.setItem("id", idUsersQuizzes);

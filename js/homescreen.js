@@ -4,6 +4,7 @@ let questionsLeft;
 let quizData;
 let scrollTimeOut;
 let quizzId;
+let userQuizzes = [];
 
 function getQuizzes () {
     const promise = axios.get(`${urlAPI}/quizzes`);
@@ -14,9 +15,21 @@ function renderQuizzPreview (response) {
 
     const allQuizzes = response.data
     const quizContainer = document.querySelector(".quiz-list.all");
+    const userQuizContainer = document.querySelector(".quiz-list.user");
     quizContainer.innerHTML = "";
 
+    /*userQuizzes = JSON.parse(localStorage.getItem("id"));*/
+
     for(let i=0; i< allQuizzes.length; i++){
+        for(let j=0; j< userQuizzes.length; j++){
+            userQuizContainer.innerHTML = "";
+            if (allQuizzes[i].id === userQuizzes[j]) {
+                userQuizContainer.innerHTML += `<li class="quiz-preview" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${allQuizzes[i].image});"
+                                    onclick="openQuiz(${allQuizzes[i].id})">
+                                        <p>${allQuizzes[i].title}</p>
+                                    </li>`;
+            }
+        }
         quizContainer.innerHTML += `<li class="quiz-preview" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${allQuizzes[i].image});"
                                     onclick="openQuiz(${allQuizzes[i].id})">
                                         <p>${allQuizzes[i].title}</p>
