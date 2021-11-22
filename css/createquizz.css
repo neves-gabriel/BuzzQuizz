@@ -42,6 +42,7 @@ body{
     gap: 24px;
 }
 .quizz-create h2{
+    margin-top: 69px;
     font-weight: bold;
 }
 .quizz-create .info-box{
