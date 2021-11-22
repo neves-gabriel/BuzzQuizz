@@ -444,10 +444,10 @@ promessa.catch(seeError);
 function lastPage(response){
     console.log(response.data.id)
     const id = response.data.id;
-    idUsersQuizzes = localStorage.getItem("id");
+    idUsersQuizzes.push(localStorage.getItem("id"));
+    console.log(idUsersQuizzes);
     idUsersQuizzes.push(id);
     localStorage.setItem("id", idUsersQuizzes);
-    idUsersQuizzes = localStorage.getItem("id");
     document.querySelector(".third-step").classList.add("hidden")
     document.querySelector(".final").classList.remove("hidden")
     const quizzPage = document.querySelector(".final")
@@ -456,7 +456,7 @@ function lastPage(response){
     <div class="quizz" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz.image});">
     <h4>${quizz.title}</h4>
     </div>
-    <button onclick= "openQuizz(${id})">Acessar o Quizz</button>
+    <button onclick= "openQuiz(${id})">Acessar o Quizz</button>
     <span onclick= "reloadPage()" >Voltar pra home</span>
     `
 }
