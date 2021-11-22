@@ -164,3 +164,7 @@
     margin-bottom: 15vh;
     color: #818181;
 }
+
+.disabled{
+    pointer-events:none;
+}

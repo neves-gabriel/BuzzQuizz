@@ -3,6 +3,7 @@ let correctAnswerCounter;
 let questionsLeft;
 let quizData;
 let scrollTimeOut;
+let quizzId;
 
 function getQuizzes () {
     const promise = axios.get(`${urlAPI}/quizzes`);
@@ -33,6 +34,7 @@ function randomizer(){
 }
 
 function openQuiz (quizId) {  
+    quizzId = quizId;
     toggleHidden(`homescreen`);
     const promise = axios.get(`${urlAPI}/quizzes/${quizId}`);
     promise.then(loadQuiz);
@@ -91,7 +93,7 @@ function renderAnswers(answersList){
     let answersHtml = ``;
 
     for(let currentAnswer of answersList){
-        answersHtml +=`<li class="answer" onclick="selectAnswer(this,${currentAnswer.isCorrectAnswer})">
+        answersHtml +=`<li class="answer ${currentAnswer.isCorrectAnswer}" onclick="selectAnswer(this)">
                         <img class="answer-img" src="${currentAnswer.image}"/>
                         <div class="answer-title">${currentAnswer.text}</div>
                       </li>`;
@@ -103,34 +105,84 @@ function renderAnswers(answersList){
 
 function buildButtons(){
     return `<button class="restart-quiz-button hidden" onclick="restartQuiz()">Reiniciar Quizz</button>
-            <button class="return-homescreen-button hidden" onclick="returnToHomeScreen()">Voltar para Home</button>`;
+            <button class="return-homescreen-button hidden" onclick="reloadPage()">Voltar para Home</button>`;
 }
 
-function selectAnswer(selectedAnswerElem, isCorrect){
+function selectAnswer(selectedAnswerElem){
     let allAnswers = selectedAnswerElem.parentElement.children;
 
+    if (selectedAnswerElem.classList.contains("true")) {
+        correctAnswerCounter++;
+    }
+
     for(let currentAnswer of allAnswers){
+        currentAnswer.classList.add("disabled");
+        if(currentAnswer.classList.contains("true")){
+                currentAnswer.classList.add("correct");
+            } else{
+                currentAnswer.classList.add("wrong");
+            } 
         if(currentAnswer !== selectedAnswerElem){
             blurAnswer(currentAnswer);
         }
     }
 
-    if(isCorrect){
-        selectedAnswerElem.classList.add("correct");
-        correctAnswerCounter++;
-    } else{
-        selectedAnswerElem.classList.add("wrong");
+    let nextQuestion = selectedAnswerElem.parentElement.parentElement.nextSibling.nextSibling;
+    
+    if (nextQuestion.classList.contains("result")) {
+        finishQuiz();
     }
+
+    setTimeout( () => { nextQuestion.scrollIntoView({block:"center",behavior:"smooth"}) } ,2000);
 }
 
 function blurAnswer(answer){
     answer.classList.add("blurred");
-    answer.onclick = () => {};
 }
 
 function openQuizCreation () {
     toggleHidden(`homescreen`);
     document.querySelector(".quizz-create").classList.remove("hidden");
+}
+
+function finishQuiz(){
+    let result = document.querySelector(".result");
+    result.innerHTML = "";
+    result.innerHTML += buildResult();
+
+    toggleHidden(`result`);
+    toggleHidden(`restart-quiz-button`);
+    toggleHidden(`return-homescreen-button`);
+}
+
+function buildResult(){
+    let level = calculateLevel();
+
+    return `<div class="result-title">${level.title}</div>
+            <div class="result-details">
+                <img class="result-img" src="${level.image}"/>
+                <div class="result-comment">${level.text}</div>
+            </div>`;
+}
+
+function calculateLevel(){
+    let levelsList = quizData.levels;
+    let userScore = (correctAnswerCounter/quizData.questions.length)*100;
+    let userLvl = levelsList[0];
+
+    for(let level of levelsList){
+        if(userScore >= level.minValue){
+            userLvl = level;
+        }
+    }
+
+    return userLvl;
+}
+
+function restartQuiz(){
+    const promise = axios.get(`${urlAPI}/quizzes/${quizzId}`);
+    promise.then(loadQuiz);
+    document.querySelector(`.quizscreen`).innerHTML = "";
 }
 
 getQuizzes();
