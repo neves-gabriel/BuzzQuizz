@@ -25,10 +25,10 @@ function confirmInfo(){
   quizzImg = document.querySelector(".quizz-img").value
   nQuestions = document.querySelector(".number-of-questions").value
   nResults = document.querySelector(".number-of-results").value
-  for(let i = 0; i < inputs.length; i++){
-      inputs[i].classList.remove("invalid");
-      inputs[i].nextSibling.nextSibling.classList.add("hidden");
-  }
+//   for(let i = 0; i < inputs.length; i++){
+//       inputs[i].classList.remove("invalid");
+//       inputs[i].nextSibling.nextSibling.classList.add("hidden");
+//   }
     if((quizzTitle.length >= 19 && quizzTitle.length <= 65) && isValidHttpUrl(quizzImg) && nQuestions > 2 && nResults > 1){
         document.querySelector(".first-step").classList.add("hidden");
         document.querySelector(".second-step").classList.remove("hidden");
