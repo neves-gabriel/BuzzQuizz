@@ -121,13 +121,11 @@ function selectAnswer(selectedAnswerElem, isCorrect){
     } else{
         selectedAnswerElem.classList.add("wrong");
     }
+}
 
-    if(--questionsLeft === 0){
-        finishQuiz();
-    } else{
-
-    }
-
+function blurAnswer(answer){
+    answer.classList.add("blurred");
+    answer.onclick = () => {};
 }
 
 function openQuizCreation () {
