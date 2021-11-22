@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/homescreen.css">
+    <link rel="stylesheet" href="css/quizscreen.css">
     <link rel="stylesheet" href="css/createquizz.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <link rel="icon" type="image/png" href="https://www.google.com/s2/u/0/favicons?domain=www.buzzfeed.com.br/">
 
@@ -29,7 +30,7 @@
         <h1 onclick="reloadPage()">BuzzQuizz</h1>
     </header>
 
-    <main class="homescreen">
+    <div class="homescreen">
 
         <ul class="quiz-list user">
             <div class="empty-list">
@@ -43,40 +44,44 @@
         <ul class="quiz-list all">
         </ul>
 
-    </main>
+    </div>
+
+    <div class="quizscreen hidden">
+
+    </div>
 
     <div class="quizz-create hidden">
         <div class="first-step">
             <h2>Comece pelo começo</h2>
-        <div class="info-box">
-            <input type="text" placeholder="Titulo do seu quizz" class="quizz-title">
-            <input type="text" placeholder="URL da imagem do seu quizz" class="quizz-img">
-            <input type="number" placeholder="Quantidade de perguntas do quizz" class="number-of-questions">
-            <input type="number" placeholder="Quantidade de níveis do quizz" class="number-of-results">
+            <div class="info-box">
+                <input type="text" placeholder="Titulo do seu quizz" class="quizz-title">
+                <input type="text" placeholder="URL da imagem do seu quizz" class="quizz-img">
+                <input type="number" placeholder="Quantidade de perguntas do quizz" class="number-of-questions">
+                <input type="number" placeholder="Quantidade de níveis do quizz" class="number-of-results">
+            </div>
+            <button onclick="confirmInfo()">Prosseguir pra criar perguntas</button>
         </div>
-        <button onclick="confirmInfo()">Prosseguir pra criar perguntas</button>
-    </div>
-    <ul class="second-step hidden">
-        <h2>Crie suas perguntas</h2>
-    </ul>
+        <ul class="second-step hidden">
+            <h2>Crie suas perguntas</h2>
+        </ul>
     
-    <ul class="third-step hidden">
-        <h2>Agora, decida os níveis</h2>
-    </ul>
-    <div class="final hidden">
-        <h2>Seu quizz está pronto!</h2>
-        <div class="quizz">
-            
+        <ul class="third-step hidden">
+            <h2>Agora, decida os níveis</h2>
+        </ul>
+        <div class="final hidden">
+            <h2>Seu quizz está pronto!</h2>
+            <div class="quizz">
+                
+            </div>
+        
+            <button onclick= "tela2()">Acessar o Quizz</button>
+            <span onclick= "tela1()">Voltar pra home</span>
         </div>
-    
-        <button onclick= "tela2()">Acessar o Quizz</button>
-        <span onclick= "tela1()">Voltar pra home</span>
-    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/homescreen.js"></script>
-    <script src="js/quizz-creation.js"></script>
+    <script type="text/javascript" src="js/quizz-creation.js"></script>
 </body>
 </html>

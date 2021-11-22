@@ -31,11 +31,6 @@ header h1{
     cursor: pointer;
 }
 
-main{
-    display: flex;
-    justify-content: center;
-    margin-top: 146px;
-    background-color: #FAFAFA;
-    margin-left: auto;
-    margin-right: auto;
+.hidden{
+    display: none;
 }

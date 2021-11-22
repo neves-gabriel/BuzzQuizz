@@ -1,26 +1,3 @@
-*{
-    box-sizing: border-box;
-}
-
-body{
-    font-family: 'Roboto', sans-serif;
-    background: #E5E5E5;
-}
-
-
-/*header{
-    width: 100%;
-    height: 69px;
-    background-color:#EC362D;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 37px;
-    line-height: 43px;
-    color: white;
-    font-weight: bold;
-}*/
-
 .quizz-create{
     display: flex;
     flex-direction: column;
@@ -217,11 +194,3 @@ body{
 input.invalid{
     background-color: #FFE9E9;
 }
-
-.quizz-create .hidden{
-    display: none;
-}
-
-/*.hidden{
-    display: none;
-}*/
