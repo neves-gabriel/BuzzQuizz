@@ -1,12 +1,19 @@
 .homescreen{
     flex-direction: column;
     width: 73vw;
-    align-content: center
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 146px;
+    background-color: #FAFAFA;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .quiz-list{
     font-weight: 400;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     width: inherit;
