@@ -20,10 +20,15 @@ function selector(icon){
 }
 
 function confirmInfo(){
+  inputs = document.querySelectorAll(".first-step input");
   quizzTitle = document.querySelector(".quizz-title").value
   quizzImg = document.querySelector(".quizz-img").value
   nQuestions = document.querySelector(".number-of-questions").value
   nResults = document.querySelector(".number-of-results").value
+  for(let i = 0; i < inputs.length; i++){
+      inputs[i].classList.remove("invalid");
+      inputs[i].nextSibling.nextSibling.classList.add("hidden");
+  }
     if((quizzTitle.length >= 19 && quizzTitle.length <= 65) && isValidHttpUrl(quizzImg) && nQuestions > 2 && nResults > 1){
         document.querySelector(".first-step").classList.add("hidden");
         document.querySelector(".second-step").classList.remove("hidden");
@@ -32,6 +37,22 @@ function confirmInfo(){
         createQuestionRender();
     }
     else{
+        if(quizzTitle.length < 20 || quizzTitle.length > 65){
+            document.querySelector(".quizz-title").classList.add("invalid");
+            document.querySelector(".quizz-title").nextSibling.nextSibling.classList.remove("hidden");
+        }
+        if(!isValidHttpUrl(quizzImg)){
+            document.querySelector(".quizz-img").classList.add("invalid")
+            document.querySelector(".quizz-img").nextSibling.nextSibling.classList.remove("hidden");
+        }
+        if(nQuestions < 3){
+            document.querySelector(".number-of-questions").classList.add("invalid")
+            document.querySelector(".number-of-questions").nextSibling.nextSibling.classList.remove("hidden");
+        }
+        if(nResults < 2){
+            document.querySelector(".number-of-results").classList.add("invalid")
+            document.querySelector(".number-of-results").nextSibling.nextSibling.classList.remove("hidden");
+        }
         alert("Informaçoes inválidas");
     }
 }
@@ -55,17 +76,27 @@ function createQuestionRender(){
             questions.innerHTML += `<li class="question-box selected">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
+            <span class="hidden">Texto da pergunta deve ter no mínimo 20 caracteres</span>
             <input type="text" placeholder="Cor de fundo da pergunta" class="question-color">
+            <span class="hidden">A cor deve ser em Hexadecimal</span>
             <p class = "answer">Resposta Correta</p>
             <input type="text" placeholder="Resposta Correta" class="correct-answer answers">
+            <span class="hidden">Resposta Correta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem" class="correct-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <p class = "answer">Resposta Incorretas</p>
             <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
         </li>`
         }
@@ -73,17 +104,27 @@ function createQuestionRender(){
             questions.innerHTML += `<li class="question-box">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
+            <span class="hidden">Texto da pergunta deve ter no mínimo 20 caracteres</span>
             <input type="text" placeholder="Cor de fundo da pergunta" class="question-color">
+            <span class="hidden">A cor deve ser em Hexadecimal</span>
             <p class = "answer">Resposta Correta</p>
             <input type="text" placeholder="Resposta Correta" class="correct-answer answers">
+            <span class="hidden">Resposta Correta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem" class="correct-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <p class = "answer">Resposta Incorretas</p>
             <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
         </li>`
         }
@@ -91,17 +132,26 @@ function createQuestionRender(){
             questions.innerHTML += `<li class="question-box">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
+            <span class="hidden">Texto da pergunta deve ter no mínimo 20 caracteres</span>
             <input type="text" placeholder="Cor de fundo da pergunta" class="question-color">
+            <span class="hidden">A cor deve ser em Hexadecimal</span>
             <p class = "answer">Resposta Correta</p>
             <input type="text" placeholder="Resposta Correta" class="correct-answer answers">
+            <span class="hidden">Resposta Correta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem" class="correct-answer-img answers-img">
             <p class = "answer">Resposta Incorretas</p>
             <input type="text" placeholder="Resposta incorreta 1" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 1" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <input type="text" placeholder="Resposta incorreta 2" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 2" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <input type="text" placeholder="Resposta incorreta 3" class="wrong-answer answers">
+            <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
+            <span class="hidden">URL inválida</span>
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
         </li>
         <button onclick = "confirmQuestionsInfo()">Prosseguir pra criar níveis</button>`
@@ -110,6 +160,11 @@ function createQuestionRender(){
 }
 
 function confirmQuestionsInfo(){
+    const inputs = document.querySelectorAll(".second-step input")
+    for(let i = 0; i< inputs.length; i++){
+        inputs[i].classList.remove("invalid");
+        inputs[i].nextSibling.nextSibling.classList.add("hidden");
+    }
     
     if(!questionLengthCheck() || !inputColorCheck() || !checkCorrectAnswer() || !checkEmptysAnswers() ){
         alert("Informaçoes inválidas");
@@ -126,7 +181,8 @@ function questionLengthCheck(){
     const inputQuestions = document.querySelectorAll(".question-text");
     for(let i = 0; i < inputQuestions.length; i++){
         if(inputQuestions[i].value.length < 20){
-            
+            // inputQuestions[i].classList.add("invalid")
+            // inputQuestions[i].nextSibling.nextSibling.classList.remove("hidden")
            return false;
         }
     }
@@ -140,6 +196,9 @@ function inputColorCheck(){
         inputColorValue = inputColorValue.toUpperCase();
 
     if(inputColorValue.length !== 7 || inputColorValue[0] !== "#" || !hexCheck(inputColorValue)){
+            // inputColor[i].classList.add("invalid")
+            // inputColor[i].nextSibling.nextSibling.classList.remove("hidden")
+            alert("Informaçoes inválidas");
             return false;
     }
     }
@@ -170,6 +229,8 @@ function checkEmptysAnswers(){
         let inputWrongAnswerImgValue = inputWrongAnswerImg[i].value;
         if(inputWrongAnswerValue === ""){
             if(inputWrongAnswerImgValue !== ""){
+                // inputWrongAnswerImg[i].classList.add("invalid");
+                // inputWrongAnswerImg[i].nextSibling.nextSibling.remove("hidden")
                 return false;
             }
             emptysAnswers++;
@@ -199,7 +260,7 @@ function hexCheck(inputColorValue){
             }
         }
         if(!aux){
-        alert("Informaçoes inválidas");
+        //alert("Informaçoes inválidas");
         return false;
     }
      return true;    
@@ -216,7 +277,7 @@ function createResultsRender(){
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
-            <input type="text" placeholder="Descrição do nível" class="result-info">
+            <textarea type="text" placeholder="Descrição do nível" class="result-info"></textarea>
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
             </li>
             `
@@ -228,7 +289,7 @@ function createResultsRender(){
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
-            <input type="text" placeholder="Descrição do nível" class="result-info">
+            <textarea type="text" placeholder="Descrição do nível" class="result-info"></textarea>
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
             </li>
             `
@@ -240,7 +301,7 @@ function createResultsRender(){
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
-            <input type="text" placeholder="Descrição do nível" class="result-info">
+            <textarea type="text" placeholder="Descrição do nível" class="result-info"></textarea>
             <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
             </li>
             <button onclick="confirmResultInfo()">Finalizar Quizz</button>`
@@ -376,20 +437,29 @@ for(let i = 0; i< allResults.length; i++ ){
 
 function sendQuizz(){
 const promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizz)
-promessa.then(setStorage);
+promessa.then(lastPage);
 promessa.catch(seeError);
 }
 
-function setStorage(response){
+function lastPage(response){
     console.log(response.data.id)
     localStorage.setItem("id", response.data.id)
     const id = localStorage.getItem("id")
     idUsersQuizzes.push(parseInt(id));
     document.querySelector(".third-step").classList.add("hidden")
-    document.querySelector(".final").classList.remove(".add")
-    const quizzPage = document.querySelector(".final quizz")
+    document.querySelector(".final").classList.remove("hidden")
+    const quizzPage = document.querySelector(".final")
     quizzPage.innerHTML = `
-    <img src="${quizz.image}" alt="">
-        <h4>${quizz.title}</h4>
+    <h2>Seu quizz está pronto!</h2>
+    <div class="quizz" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz.image});">
+    <h4>${quizz.title}</h4>
+    </div>
+    <button onclick= "tela2(${id})">Acessar o Quizz</button>
+    <span onclick= "tela1()" >Voltar pra home</span>
     `
+}
+
+function seeError(error){
+    console.log(error.responde.data);
+
 }
