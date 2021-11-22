@@ -130,4 +130,9 @@ function selectAnswer(selectedAnswerElem, isCorrect){
 
 }
 
+function openQuizCreation () {
+    toggleHidden(`homescreen`);
+    document.querySelector(".quizz-create").classList.remove("hidden");
+}
+
 getQuizzes();
