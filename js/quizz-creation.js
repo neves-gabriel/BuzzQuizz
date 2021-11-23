@@ -2,7 +2,6 @@ let quizzTitle = "";
 let quizzImg = "";
 let nQuestions = 0;
 let nResults = 0;
-let idUsersQuizzes = [];
 
 let quizz = {title: "",
 image: "",
@@ -435,21 +434,32 @@ for(let i = 0; i< allResults.length; i++ ){
   sendQuizz()
 }
 
-function sendQuizz(){
-const promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizz)
+function sendQuizz(teste){
+const promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", teste) //quizz)
 promessa.then(lastPage);
 promessa.catch(seeError);
 }
 
 function lastPage(response){
-    console.log(response.data.id)
-    const id = response.data.id;
-    if (localStorage.getItem("id") != "") {
-        idUsersQuizzes.push(localStorage.getItem("id"));
-    }
-    console.log(idUsersQuizzes);
+    let idUsersQuizzes = []
+    console.log(response.data.id + "Recebeu resposta")
+    let id = response.data.id;
     idUsersQuizzes.push(id);
-    localStorage.setItem("id", idUsersQuizzes);
+    const idString = localStorage.getItem("id");
+    console.log(idString + "Oq estava salvo no local");
+    if(idString === null){
+    console.log("primeira vez")
+        id =JSON.stringify(idUsersQuizzes);
+        localStorage.setItem("id", id)
+    }
+    else{
+        idUsersQuizzes = JSON.parse(idString)
+        console.log(idUsersQuizzes + " idUsersQuizzes");
+        idUsersQuizzes.push(id);
+        let idSerial = JSON.stringify(idUsersQuizzes);
+        console.log(idSerial + "De volta pra string")
+        localStorage.setItem("id", idSerial);
+    }
     document.querySelector(".third-step").classList.add("hidden")
     document.querySelector(".final").classList.remove("hidden")
     const quizzPage = document.querySelector(".final")
