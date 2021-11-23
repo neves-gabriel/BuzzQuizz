@@ -20,12 +20,10 @@ function renderQuizzPreview (response) {
 
     userQuizzes = JSON.parse(localStorage.getItem("id"));
     console.log(userQuizzes);
-    if (userQuizzes != []) {
+    if (userQuizzes != null) {
         userQuizContainer.innerHTML = "";
         showScreen(`list-title-container`);
-    }
-
-    for(let i=0; i< allQuizzes.length; i++){
+        for(let i=0; i< allQuizzes.length; i++){
         if (userQuizzes.includes(allQuizzes[i].id)) {
             userQuizContainer.innerHTML += `<li class="quiz-preview" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${allQuizzes[i].image});"
                                             onclick="openQuiz(${allQuizzes[i].id})">
@@ -37,8 +35,15 @@ function renderQuizzPreview (response) {
                                         <p>${allQuizzes[i].title}</p>
                                     </li>`;
         }
-    } 
-
+        } 
+    } else {
+        for(let i=0; i< allQuizzes.length; i++){
+            quizContainer.innerHTML += `<li class="quiz-preview" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${allQuizzes[i].image});"
+                                    onclick="openQuiz(${allQuizzes[i].id})">
+                                        <p>${allQuizzes[i].title}</p>
+                                    </li>`;
+        }
+    }
 }
 
 function toggleHidden (element) {
