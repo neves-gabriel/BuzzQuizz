@@ -424,8 +424,8 @@ for(let i = 0; i< allResults.length; i++ ){
   sendQuizz()
 }
 
-function sendQuizz(teste){
-const promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", teste) //quizz)
+function sendQuizz(){
+const promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizz)
 promessa.then(lastPage);
 promessa.catch(seeError);
 }

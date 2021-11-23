@@ -1,6 +1,7 @@
 .homescreen{
     flex-direction: column;
     width: 73vw;
+    max-width: 1051px;
     align-content: center;
     display: flex;
     justify-content: center;
@@ -13,10 +14,10 @@
 .quiz-list{
     font-weight: 400;
     display: flex;
-    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     width: inherit;
+    max-width: 1051px;
 }
 
 .quiz-list li{
@@ -33,6 +34,7 @@
     justify-content: center;
     align-items: center;
     width: inherit;
+    max-width: 1051px;
     margin-bottom: 65px;
 }
 
@@ -86,4 +88,21 @@
     font-size: 19px;
     line-height: 22px;
     text-align: left;
+}
+
+.list-title-container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.list-title-container ion-icon{
+    color: red;
+    font-size:30px;
+}
+
+.list-title-container button {
+    border: none;
+    background-color: #FAFAFA;
 }
