@@ -68,7 +68,7 @@ function createQuestionRender(){
     const questions = document.querySelector(".second-step")
     for(let i = 0; i < nQuestions; i++){
         if(i===0){
-            questions.innerHTML += `<li class="question-box selected">
+            questions.innerHTML += `<li data-identifier="question" class="question-box selected">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
             <span class="hidden">Texto da pergunta deve ter no mínimo 20 caracteres</span>
@@ -92,11 +92,11 @@ function createQuestionRender(){
             <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
             <span class="hidden">URL inválida</span>
-            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            <ion-icon data-identifier="expand" onclick="selector(this)" name="create-outline"></ion-icon>
         </li>`
         }
         else if(i < nQuestions - 1){
-            questions.innerHTML += `<li class="question-box">
+            questions.innerHTML += `<li data-identifier="question" class="question-box">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
             <span class="hidden">Texto da pergunta deve ter no mínimo 20 caracteres</span>
@@ -120,11 +120,11 @@ function createQuestionRender(){
             <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
             <span class="hidden">URL inválida</span>
-            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            <ion-icon data-identifier="expand" onclick="selector(this)" name="create-outline"></ion-icon>
         </li>`
         }
         else{
-            questions.innerHTML += `<li class="question-box">
+            questions.innerHTML += `<li data-identifier="question" class="question-box">
             <p>Pergunta ${i+1}</p>
             <input type="text" placeholder="Texto da Pergunta" class="question-text">
             <span class="hidden">Texto da pergunta deve ter no mínimo 20 caracteres</span>
@@ -147,7 +147,7 @@ function createQuestionRender(){
             <span class="hidden">Resposta não pode estar vazia</span>
             <input type="text" placeholder="URL da imagem 3" class="wrong-answer-img answers-img">
             <span class="hidden">URL inválida</span>
-            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            <ion-icon data-identifier="expand" onclick="selector(this)" name="create-outline"></ion-icon>
         </li>
         <button onclick = "confirmQuestionsInfo()">Prosseguir pra criar níveis</button>`
         }
@@ -249,7 +249,6 @@ function hexCheck(inputColorValue){
             }
         }
         if(!aux){
-        //alert("Informaçoes inválidas");
         return false;
     }
      return true;    
@@ -261,37 +260,37 @@ function createResultsRender(){
     for(let i = 0 ; i < nResults; i++){
         if(i === 0){
             results.innerHTML += `
-            <li class="result-box selected">
+            <li data-identifier="level" class="result-box selected">
             <p>Nível ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <textarea type="text" placeholder="Descrição do nível" class="result-info"></textarea>
-            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            <ion-icon data-identifier="expand" onclick="selector(this)" name="create-outline"></ion-icon>
             </li>
             `
         }
         else if(i < nResults - 1){
             results.innerHTML += `
-            <li class="result-box">
+            <li data-identifier="level" class="result-box">
             <p>Nível ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <textarea type="text" placeholder="Descrição do nível" class="result-info"></textarea>
-            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            <ion-icon data-identifier="expand" onclick="selector(this)" name="create-outline"></ion-icon>
             </li>
             `
         }
         else{
             results.innerHTML += `
-            <li class="result-box">
+            <li data-identifier="level" class="result-box">
             <p>Nivel ${i+1}</p>
             <input type="text" placeholder="Título do nível" class="result-title">
             <input type="number" placeholder="% de acerto mínima" class="result-percent">
             <input type="text" placeholder="URL da imagem do nível" class="result-img">
             <textarea type="text" placeholder="Descrição do nível" class="result-info"></textarea>
-            <ion-icon onclick="selector(this)" name="create-outline"></ion-icon>
+            <ion-icon data-identifier="expand" onclick="selector(this)" name="create-outline"></ion-icon>
             </li>
             <button onclick="confirmResultInfo()">Finalizar Quizz</button>`
         }
