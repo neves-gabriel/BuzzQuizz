@@ -26,12 +26,12 @@ function renderQuizzPreview (response) {
         for(let i=0; i< allQuizzes.length; i++){
         if (userQuizzes.includes(allQuizzes[i].id)) {
             userQuizContainer.innerHTML += `<li class="quiz-preview" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${allQuizzes[i].image});"
-                                            onclick="openQuiz(${allQuizzes[i].id})">
+                                            onclick="openQuiz(${allQuizzes[i].id})" data-identifier="quizz-card">
                                                 <p>${allQuizzes[i].title}</p>
                                             </li>`;
         } else {
             quizContainer.innerHTML += `<li class="quiz-preview" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${allQuizzes[i].image});"
-                                    onclick="openQuiz(${allQuizzes[i].id})">
+                                    onclick="openQuiz(${allQuizzes[i].id})" data-identifier="quizz-card">
                                         <p>${allQuizzes[i].title}</p>
                                     </li>`;
         }
@@ -39,7 +39,7 @@ function renderQuizzPreview (response) {
     } else {
         for(let i=0; i< allQuizzes.length; i++){
             quizContainer.innerHTML += `<li class="quiz-preview" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${allQuizzes[i].image});"
-                                    onclick="openQuiz(${allQuizzes[i].id})">
+                                    onclick="openQuiz(${allQuizzes[i].id})" data-identifier="quizz-card">
                                         <p>${allQuizzes[i].title}</p>
                                     </li>`;
         }
@@ -103,7 +103,7 @@ function renderQuestion(questionData){
     let answersList = [];
     let returnHtml = ``;
 
-    returnHtml += ` <div class="question">
+    returnHtml += ` <div class="question" data-identifier="question">
                         <div class="question-title" style="background-color: ${questionData.color}">
                             ${questionData.title}
                         </div>
@@ -123,7 +123,7 @@ function renderAnswers(answersList){
     let answersHtml = ``;
 
     for(let currentAnswer of answersList){
-        answersHtml +=`<li class="answer ${currentAnswer.isCorrectAnswer}" onclick="selectAnswer(this)">
+        answersHtml +=`<li class="answer ${currentAnswer.isCorrectAnswer}" onclick="selectAnswer(this)" data-identifier="answer">
                         <img class="answer-img" src="${currentAnswer.image}"/>
                         <div class="answer-title">${currentAnswer.text}</div>
                       </li>`;
@@ -189,7 +189,7 @@ function finishQuiz(){
 function buildResult(){
     let level = calculateLevel();
 
-    return `<div class="result-text">${level.title}</div>
+    return `<div class="result-text" data-identifier="quizz-result">${level.title}</div>
             <div class="result-details">
                 <img class="result-img" src="${level.image}"/>
                 <div class="result-comment">${level.text}</div>

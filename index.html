@@ -34,19 +34,19 @@
 
         <div class="list-title-container hidden"> 
             <h2>Seus Quizzes</h2>
-            <button name="create-new-quiz" onclick="openQuizCreation()"><ion-icon name="add-circle"></ion-icon></button>
+            <button name="create-new-quiz" onclick="openQuizCreation()" data-identifier="create-quizz"><ion-icon name="add-circle"></ion-icon></button>
         </div>
 
-        <ul class="quiz-list user">
+        <ul class="quiz-list user" data-identifier="user-quizzes">
             <div class="empty-list">
                 <p>Você não criou nenhum quizz ainda :(</p>
-                <button name="create-first-new-quiz" onclick="openQuizCreation()">Criar quizz</button>
+                <button name="create-first-new-quiz" onclick="openQuizCreation()" data-identifier="create-quizz">Criar quizz</button>
             </div>
         </ul>
         
         <h2>Todos os Quizzes</h2>
 
-        <ul class="quiz-list all">
+        <ul class="quiz-list all" data-identifier="general-quizzes">
         </ul>
 
     </div>
