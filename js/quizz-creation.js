@@ -24,10 +24,6 @@ function confirmInfo(){
   quizzImg = document.querySelector(".quizz-img").value
   nQuestions = document.querySelector(".number-of-questions").value
   nResults = document.querySelector(".number-of-results").value
-//   for(let i = 0; i < inputs.length; i++){
-//       inputs[i].classList.remove("invalid");
-//       inputs[i].nextSibling.nextSibling.classList.add("hidden");
-//   }
     if((quizzTitle.length >= 19 && quizzTitle.length <= 65) && isValidHttpUrl(quizzImg) && nQuestions > 2 && nResults > 1){
         document.querySelector(".first-step").classList.add("hidden");
         document.querySelector(".second-step").classList.remove("hidden");
@@ -180,8 +176,6 @@ function questionLengthCheck(){
     const inputQuestions = document.querySelectorAll(".question-text");
     for(let i = 0; i < inputQuestions.length; i++){
         if(inputQuestions[i].value.length < 20){
-            // inputQuestions[i].classList.add("invalid")
-            // inputQuestions[i].nextSibling.nextSibling.classList.remove("hidden")
            return false;
         }
     }
@@ -195,8 +189,6 @@ function inputColorCheck(){
         inputColorValue = inputColorValue.toUpperCase();
 
     if(inputColorValue.length !== 7 || inputColorValue[0] !== "#" || !hexCheck(inputColorValue)){
-            // inputColor[i].classList.add("invalid")
-            // inputColor[i].nextSibling.nextSibling.classList.remove("hidden")
             alert("Informaçoes inválidas");
             return false;
     }
@@ -228,8 +220,6 @@ function checkEmptysAnswers(){
         let inputWrongAnswerImgValue = inputWrongAnswerImg[i].value;
         if(inputWrongAnswerValue === ""){
             if(inputWrongAnswerImgValue !== ""){
-                // inputWrongAnswerImg[i].classList.add("invalid");
-                // inputWrongAnswerImg[i].nextSibling.nextSibling.remove("hidden")
                 return false;
             }
             emptysAnswers++;
@@ -442,22 +432,17 @@ promessa.catch(seeError);
 
 function lastPage(response){
     let idUsersQuizzes = []
-    console.log(response.data.id + "Recebeu resposta")
     let id = response.data.id;
     idUsersQuizzes.push(id);
     const idString = localStorage.getItem("id");
-    console.log(idString + "Oq estava salvo no local");
     if(idString === null){
-    console.log("primeira vez")
         id =JSON.stringify(idUsersQuizzes);
         localStorage.setItem("id", id)
     }
     else{
         idUsersQuizzes = JSON.parse(idString)
-        console.log(idUsersQuizzes + " idUsersQuizzes");
         idUsersQuizzes.push(id);
         let idSerial = JSON.stringify(idUsersQuizzes);
-        console.log(idSerial + "De volta pra string")
         localStorage.setItem("id", idSerial);
     }
     document.querySelector(".third-step").classList.add("hidden")
@@ -468,12 +453,7 @@ function lastPage(response){
     <div class="quizz" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz.image});">
     <h4>${quizz.title}</h4>
     </div>
-    <button onclick= "openQuiz(${id})">Acessar o Quizz</button>
+    <button onclick= "openQuiz(${response.data.id})">Acessar o Quizz</button>
     <span onclick= "reloadPage()" >Voltar pra home</span>
     `
-}
-
-function seeError(error){
-    console.log(error.responde.data);
-
 }
